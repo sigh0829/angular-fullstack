@@ -54,10 +54,11 @@ exports.getbyid = function(req, res){
   }
   if(_.isUndefined(_.findWhere(todos,{'label': todo.label})))
   {
-    todos.push(new Todo(getNextId(),todo.label)),
-    res.status(201).json(todo)
+    todo = new Todo(getNextId(),todo.label);
+    todos.push(todo);
+    res.status(201).json(todo);
   } else {
-    res.status(400).json({error : 'Todo already exist'})
+    res.status(400).json({error : 'Todo already exist'});
   };
 
 };

@@ -22,6 +22,8 @@ var todos = [
 
 var expectedFirstResult = JSON.stringify({id : 0, label : "Apprendre JavaScript"});
 
+describe('GET method test', function(){
+
 describe('GET /api/todos', function() {
 
 	it('should respond with JSON array', function(done) {
@@ -36,7 +38,7 @@ describe('GET /api/todos', function() {
 		});
 	});
 
-	it('should have the 4 expected elements', function(done) {
+	it('should respond with 4 expected elements', function(done) {
 		request(app)
 		.get('/api/todos')
 		.expect(200)
@@ -56,7 +58,7 @@ describe('GET /api/todos', function() {
 
 describe('GET /api/todos/:id', function() {
 
-	it('should respond JSON object (id=0)', function(done) {
+	it('should respond the expecting JSON object with the id', function(done) {
 		request(app)
 		.get('/api/todos/0')
 		.expect(200)
@@ -68,7 +70,7 @@ describe('GET /api/todos/:id', function() {
 		});
 	});
 
-	it('should respond JSON object (id=0) equal to ' + JSON.stringify(todos[0]), function(done) {
+	it('should respond a JSON object (id=0) equal to ' + JSON.stringify(todos[0]), function(done) {
 		request(app)
 		.get('/api/todos/0')
 		.expect(200)
@@ -83,7 +85,7 @@ describe('GET /api/todos/:id', function() {
 		});
 	});
 
-	it('should have a empty {} response with unknow id', function(done) {
+	it('should respond empty {} with unknow id', function(done) {
 		request(app)
 		.get('/api/todos/99')
 		.expect(404)
@@ -96,7 +98,7 @@ describe('GET /api/todos/:id', function() {
 		});
 	});
 
-	it('should have a 400 response (NAN id)', function(done) {
+	it('should have a 400 response and error message with NAN id', function(done) {
 		request(app)
 		.get('/api/todos/ABC')
 		.expect(400)
@@ -109,32 +111,24 @@ describe('GET /api/todos/:id', function() {
 	});
 
 });
+});
 
 describe('POST /api/todos/', function() {
-	it('should have a 400 response when no data is posted, missing label property and empty label property', function(done) {
-		request(app)
-		.post('/api/todos')
+	it('should have a 400 response when no data is posted, missing or empty label property', function(done) {
+		getRequest('POST','/api/todos',400,/json/)
 		.send()
-		.expect(400)
-		.expect('Content-Type', /json/)
 		.end(function(err, res) {
 			if (err) return done(err);
 			res.body.should.eql({ error: 'No Todo data in request'});
 		});
-		request(app)
-		.post('/api/todos')
+		getRequest('POST','/api/todos',400,/json/)
 		.send({id : 0})
-		.expect(400)
-		.expect('Content-Type', /json/)
 		.end(function(err, res) {
 			if (err) return done(err);
 			res.body.should.eql({ error: 'No Todo data in request'});
 		});
-		request(app)
-		.post('/api/todos')
+		getRequest('POST','/api/todos',400,/json/)
 		.send({label : ""})
-		.expect(400)
-		.expect('Content-Type', /json/)
 		.end(function(err, res) {
 			if (err) return done(err);
 			res.body.should.eql({ error: 'No Todo data in request'});
@@ -143,25 +137,49 @@ describe('POST /api/todos/', function() {
 
 	});
 	it('should have a 400 response when trying to create an existing todo (same label)', function(done) {
-	getRequest('/api/todos',400,/json/)
+		getRequest('POST','/api/todos',400,/json/)
 		.send({label:"Apprendre Python"}).end(function(err, res) {
 			if (err) return done(err);
 			res.body.should.eql({ error: 'Todo already exist'});
 			done();
 		});
-
-
 	});
+	it('should create and return a new todo if not exist', function(done) {
+		getRequest('POST','/api/todos',201,/json/)
+		.send({label:"Apprendre Perl"}).end(function(err, res) {
+			if (err) return done(err);
+			res.body.should.eql({id:4, label:"Apprendre Perl"});
+			//res.body.label.should.eql({ error: 'Apprendre Perl'});
+			res.body.id.should.eql(4);
+			done();
+		});
+	});
+
 
 });
 
 
-var getRequest = function(uri , expectedStatus, expectedContentStatus){
-	return 	request(app)
-	.post(uri)
-	.expect(expectedStatus)
-	.expect('Content-Type', expectedContentStatus);
-	
-	
-	
+/**
+* Get a request HTTP respecting following conditions:
+* type : (GET, POST, PUT, DELETE)
+* uri : (endpoint)
+* status : code return expected
+* contentType : content type expected.
+*/ 
+var getRequest = function(type, uri , status, contentType){
+	var req = request(app); 
+	switch(type){
+		case 'GET':
+			req = req.get(uri);
+			break;
+		case 'POST':
+			req = req.post(uri);
+			break;
+		default:
+		console.error("Type " + type +' is not reconized.');
+		break;
+	} 
+
+	return 	req.expect(status)
+	.expect('Content-Type', contentType);
 }
