@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('angularFullstackApp')
+angular.module('flawwengApp')
   .controller('MainCtrl', function ($scope, $http) {
     $scope.awesomeThings = [];
 

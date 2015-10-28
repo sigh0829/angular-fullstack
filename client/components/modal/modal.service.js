@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('angularFullstackApp')
+angular.module('flawwengApp')
   .factory('Modal', function ($rootScope, $modal) {
     /**
      * Opens a modal

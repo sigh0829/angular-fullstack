@@ -1,29 +1,36 @@
 
-Filter par libellé
-<input type="text" ng-model="query" ng-click="count = count + 1" ></input>
-<div ng-repeat="todo in todos | filter:query" class="list-group">
-	<a href="#" class="list-group-item active">{{todo.libelle}}</a>
-</div>
+<div class="container">
+	<span class="glyphicon glyphicon-plus" style="color:green;font-size:25px;cursor:pointer" ng-click="add()"></span>
 
+<!--	<div ng-show="add">
+		<form name="addTodoForm">
+			Libelle <input type="text" required>
+			<span style="color:red" ng-show="addTodoForm.user.$dirty && myForm.user.$invalid">
+				<span ng-show="addTodoForm.user.$error.required">Username is required.</span>
+			</form>
+			<p>
+				<input type="submit"
+				ng-disabled="addTodoForm.user.$dirty && myForm.user.$invalid ||
+				addTodoForm.email.$dirty && myForm.email.$invalid">
+			</p>
+		</div>
+-->
+		<div>
+			Filter par libellé
+			<input type="text" ng-model="query" ng-click="count = count + 1" ></input>
+		</div>
 
-<table class="table">
-	<thead>
-		<tr>
-			<th>Libelle</th>
-		</tr>
-	</thead>
-	<tr ng-repeat="todo in todos | filter:query" ng-click="" style="cursor:pointer" class="list-group">   
-		<td class="list-group-item ">{{todo.libelle}}</td>
-	</tr>
-</table>    
+		<div>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Libelle</th>
+					</tr>
+				</thead>
+				<tr ng-repeat="todo in todos | filter:query" ng-click="" style="cursor:pointer" class="list-group">   
+					<td class="list-group-item ">{{todo.label}}</td>
+				</tr>
+			</table>    
+		</div>
 
-<table data-url="{{todos}}" data-height="299" data-click-to-select="true">
-    <thead>
-        <tr>
-            <th data-field="state" data-checkbox="true"></th>
-            <th data-field="id" data-align="right">Item ID</th>
-            <th data-field="name" data-align="center">Item Name</th>
-            <th data-field="price" data-align="">Item Price</th>
-        </tr>
-    </thead>
-</table>
+	</div>
