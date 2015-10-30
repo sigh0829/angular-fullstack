@@ -1,0 +1,63 @@
+{
+    "kanban": [
+        {
+            "id": "f0579b50-7e43-11e5-97a2-a72c21e930b2",
+            "name": "Mon kanban"
+        }
+    ],
+    "columns": [
+        {
+            "idKanban": "f0579b50-7e43-11e5-97a2-a72c21e930b2",
+            "columnsList": [
+                {
+                    "id": "de5cf510-7e22-11e5-8676-03c0de5bb1ff",
+                    "name": "A faire"
+                },
+                {
+                    "id": "2bc257a0-7e23-11e5-bcc2-47f275fd9356",
+                    "name": "En cours"
+                },
+                {
+                    "id": "39ee6cb1-7e23-11e5-8cb5-4bd43bebfae8",
+                    "name": "Réalisé"
+                },
+                {
+                    "id": "44522f20-7e23-11e5-92b7-d997deeab865",
+                    "name": "Abandonné"
+                }
+            ]
+        }
+    ],
+    "tasks": [
+        {
+            "id": "03c9cc60-7e23-11e5-8de7-c7bc34823232",
+            "idColumn": "de5cf510-7e22-11e5-8676-03c0de5bb1ff",
+            "name": "Développer en Angular",
+            "description": "Approfondir ses connaissances sur la technologie.",
+            "owner": "flawweng",
+            "endDate": "",
+            "timeEstimate": "12",
+            "timeSpent": "0"
+        },
+        {
+            "id": "151b1640-7e23-11e5-a785-034251641d74",
+            "idColumn": "2bc257a0-7e23-11e5-bcc2-47f275fd9356",
+            "name": "Se sensibiliser aux technogies mobiles",
+            "description": "Approfondir ses connaissances sur la technologie.",
+            "owner": "flawweng",
+            "endDate": "",
+            "timeEstimate": "12",
+            "timeSpent": "0"
+        },
+        {
+            "name": "Bitch better have my money",
+            "description": "Oh la la",
+            "owner": "flawweng",
+            "endDate": "",
+            "timeEstimate": "12",
+            "timeSpent": "0",
+            "id": "b28ec1f0-7eec-11e5-b565-77699f8e3000",
+            "idColumn": "de5cf510-7e22-11e5-8676-03c0de5bb1ff"
+        }
+    ]
+}

@@ -10,6 +10,7 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 var express = require('express');
 var config = require('./config/environment');
 
+
 // Setup server
 var app = express();
 
@@ -25,3 +26,15 @@ server.listen(config.port, config.ip, function () {
 
 // Expose app
 exports = module.exports = app;
+/*
+var fs = require("fs");
+var content = JSON.parse(fs.readFileSync('./server/data/data.json'));
+content.lol='Yooo';
+console.log(content)
+
+fs.writeFile('./server/data/data.json', JSON.stringify(content), function (err) {
+  if (err) throw err;
+  console.log('It\'s saved!');
+});
+*/
+

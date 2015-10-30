@@ -13,40 +13,26 @@ Task  = function(){
 	} 
 }
 
-kanban.controller('kanbanCtrl', function ($scope,$uibModal) {
+kanban.controller('kanbanCtrl', function ($scope,$uibModal, kanbanService) {
 	$scope.owners=[{
 		name:'flawweng'
 	}];
+	
+	$scope.columns=[];
+	$scope.selectedKanban=null;;
+	$scope.kanbans =[];
+	$scope.currentKanban = null;
 
-	$scope.columns = [
-	{
-		id:1,name:'A faire',tasks:[
-		createTaskFromObject({
-			id: 10,
-			name:"Développer en Angular",
-			description : 'Approfondir ses connaissances sur la technologie.',
-			owner:'flawweng',
-			endDate:'',
-			timeEstimate:'12',
-			timeSpent:'0'
-		}), createTaskFromObject({
-			id:11,
-			name:"Se sensibiliser aux technogies mobiles",
-			description : 'Approfondir ses connaissances sur la technologie.',
-			owner:'flawweng',
-			endDate:'',
-			timeEstimate:'12',
-			timeSpent:'0'
-		})
-		]
-	},{
-		id:2,name:'En cours',tasks:[]
-	}, {
-		id:3,name:"Réalisé",tasks:[]
-	},{
-		id:4,name:'Abandonné',tasks:[]
+
+	$scope.selectKanban = function(kanbanSelected){
+		kanbanService.getKanbanById(kanbanSelected.id).then(function(data){
+			$scope.currentKanban = data;
+		},function(error){
+			alert('La récupération de la liste des kanban a échoué.');
+		}); 
+
 	}
-	];
+
 	$scope.onDrop = function (data, targetColId) {  
 		task = createTaskFromObject(data);
 		columns = $scope.columns;
@@ -79,6 +65,9 @@ kanban.controller('kanbanCtrl', function ($scope,$uibModal) {
 			}
 		});
 		modalInstance.result.then(function (newTask) {
+			/*kanbanService.addTask(newTask){
+
+			}*/
 			col.tasks.push(newTask);
 		}, function () {
 		});
@@ -102,10 +91,19 @@ kanban.controller('kanbanCtrl', function ($scope,$uibModal) {
 		}, function () {
 		});
 	}
-	$scope.delete = function(column,task){
-		column.tasks = _.without(column.tasks,task);
-		//task = undefined;
+	$scope.delete = function(kanbanSelected, column,task){
+		kanbanService.deleteTask(kanbanSelected.id, column.id, task.id).then(function(data){
+			column.tasks = _.without(column.tasks,task);
+		},function(error){
+			alert('La récupération de la liste des kanban a échoué.');
+		}); 
 	}
+
+	kanbanService.getKanban().then(function(data){
+		$scope.kanbans = data;
+	},function(error){
+		alert('La récupération de la liste des kanban a échoué.');
+	});
 
 }).controller('modifyModalTaskCtrl', function($scope,$uibModalInstance,task,isAddMode){
 

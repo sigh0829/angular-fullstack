@@ -1,6 +1,9 @@
 <div style="width:80%; margin: 0 auto 0 auto;">
+<select ng-model="selectedKanban"
+        data-ng-options="k.name for k in kanbans"  ng-change="selectKanban(selectedKanban)">                 
+</select>
     <div class="col-lg-3 panel panel-primary colStyle" id="{{col.id}}" 
-    kanban-board-drop="over" ng-repeat="col in columns">
+    kanban-board-drop="over" ng-repeat="col in currentKanban.columns">
     <div class="panel-heading" style="margin-bottom: 10px;">
         <h3 class="panel-title">{{col.name}}
         <span class="glyphicon glyphicon-plus" style="color:green;font-size:25px;cursor:pointer" ng-click="add(col)"></span>
@@ -15,7 +18,7 @@
         <p>{{task.description}}</p>
         <p>
             <span class="glyphicon glyphicon-pencil" style="cursor:pointer" ng-click="modify(task)"></span>
-            <span class="glyphicon glyphicon-trash" style="cursor:pointer" ng-click="delete(col,task)"></span>
+            <span class="glyphicon glyphicon-trash" style="cursor:pointer" ng-click="delete(selectedKanban, col,task)"></span>
         </p>
     </div>
 
