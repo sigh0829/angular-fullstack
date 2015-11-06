@@ -4,7 +4,7 @@
 var fs = require("fs");
 var _ = require('lodash');
 var uuid = require('node-uuid');
-var dataFilePath = 'server/data/data.json';
+var dataFilePath = 'data/kanban.data.json';
 
 
 var getData = function (){
@@ -58,6 +58,29 @@ exports.createTask = function(req,res){
 	return res.json(task);
 
 }
+
+exports.updateTask = function(req,res){
+	var idKanban = req.params.idKanban;
+	var idColumn = req.params.idColumn;
+	var idTask = req.params.idTask;
+	var data = getData();
+	var task = getTask(data,idKanban, idColumn, idTask);
+	if(task==undefined)
+		return res.status(400).json({error : "La tache n\'existe pas : " +  idTask});
+	task = req.body;
+	if(task.newColumn!=undefined){
+		task.idColumn = task.newColumn;
+		task['newColumn']=undefined;
+	}
+	var tasks = data['tasks'];
+	var index = _.findIndex(tasks, {'id' : task.id});
+	console.log(index);
+	tasks[index] = task;
+	saveData(data);
+	return res.json(task);
+
+}
+
 
 exports.deleteTask = function(req,res){
 	var idKanban = req.params.idKanban;

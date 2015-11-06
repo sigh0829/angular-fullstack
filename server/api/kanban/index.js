@@ -7,9 +7,9 @@ var router = express.Router();
 router.get('/', controller.get);
 router.get('/:id', controller.getById);
 
+var taskPath = '/:idKanban/column/:idColumn/task';
 
-router.post('/:idKanban/column/:idColumn/task', controller.createTask);
-
-router.delete('/:idKanban/column/:idColumn/task/:idTask', controller.deleteTask);
-
+router.post(taskPath, controller.createTask);
+router.delete(taskPath + '/:idTask', controller.deleteTask);
+router.put(taskPath+ '/:idTask', controller.updateTask);
 module.exports = router;

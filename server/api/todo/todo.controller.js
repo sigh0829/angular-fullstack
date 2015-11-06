@@ -3,19 +3,16 @@
 
 var _ = require('lodash');
 
-var Todo  = function(id,label){
-  this.id = id;
-  this.label = label;
+var Todo  = function(id, title, completed){
+  this.id=id;
+  this.title = title;
+  this.completed = completed;
 }
 
-Todo.prototype.label = function(){
-  return this.label;
-}
-
-var todos = [new Todo(0,"Apprendre JavaScript"),
-new Todo(1,"Apprendre Python"),
-new Todo(2,"Apprendre C"),
-new Todo(3,"Apprendre C++")
+var todos = [new Todo("f0579b50-7e43-11e5-97a2-a72c21e930b1","Apprendre JavaScript", false),
+new Todo("f0579b50-7e43-11e5-97a2-a72c21e930b2", "Apprendre Python", false),
+new Todo("f0579b50-7e43-11e5-97a2-a72c21e930b3","Apprendre C", false),
+new Todo("f0579b50-7e43-11e5-97a2-a72c21e930b4","Apprendre C++", false)
 ];
 
 var exos = [];
@@ -49,12 +46,12 @@ exports.getbyid = function(req, res){
 
   exports.post = function(req, res){
    var todo = req.body;
-   if(_.isEmpty(todo) || _.isUndefined(todo.label) || _.isEqual(todo.label,'')){
+   if(_.isEmpty(todo) || _.isUndefined(todo.title) || _.isEqual(todo.title,'')){
     return res.status(400).json({error : 'No Todo data in request'});
   }
-  if(_.isUndefined(_.findWhere(todos,{'label': todo.label})))
+  if(_.isUndefined(_.findWhere(todos,{'title': todo.title})))
   {
-    todo = new Todo(getNextId(),todo.label);
+    todo = new Todo(getNextId(),todo.title);
     todos.push(todo);
     res.status(201).json(todo);
   } else {
@@ -62,6 +59,20 @@ exports.getbyid = function(req, res){
   };
 
 };
+
+
+exports.update = function(req,res){
+  var id = req.params.id;
+  var newTodo = req.body;
+  var todo = _.first(_.filter(todos, { 'id': id }));
+  if(_.isEmpty(todo)) return res.status(400).json({error : 'No Todo with id ' + id});
+  var index = _.findIndex(todos, {'id' : id});
+  todos[index] = newTodo;
+  console.log(todos);
+  return res.json(newTodo);
+}
+
+
 
 /**
  * Get the next id

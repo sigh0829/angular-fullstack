@@ -16,15 +16,17 @@
 			</div>
 			<div class="row">
 				<div class="col-md-4">
-					<label for="email">Propriétaire:</label>
-					<select/>
+					<label for="owner">Propriétaire:</label>
+					<select ng-model='task.owner'>
+					<option ng-repeat="owner in owners" value='{{owner.name}}'>{{owner.name}}</option>
+					</select>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-6">
 					<label for="dateFin">Date de fin:</label>
 					<p class="input-group">	
-						<input type="date" class="form-control" uib-datepicker-popup ng-model="task.endDate" is-open="endDate.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Close" />
+						<input type="date" class="form-control" uib-datepicker-popup="dd-MMMM-yyyy" ng-model="task.endDate" is-open="endDate.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Close" />
 						<span class="input-group-btn">
 							<button type="button" class="btn btn-default" ng-click="openEndDate($event)"><i class="glyphicon glyphicon-calendar"></i></button>
 						</span>

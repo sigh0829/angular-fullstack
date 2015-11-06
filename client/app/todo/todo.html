@@ -1,36 +1,68 @@
-
+<!--
 <div class="container">
 	<span class="glyphicon glyphicon-plus" style="color:green;font-size:25px;cursor:pointer" ng-click="add()"></span>
 
-<!--	<div ng-show="add">
-		<form name="addTodoForm">
-			Libelle <input type="text" required>
-			<span style="color:red" ng-show="addTodoForm.user.$dirty && myForm.user.$invalid">
-				<span ng-show="addTodoForm.user.$error.required">Username is required.</span>
-			</form>
-			<p>
-				<input type="submit"
-				ng-disabled="addTodoForm.user.$dirty && myForm.user.$invalid ||
-				addTodoForm.email.$dirty && myForm.email.$invalid">
-			</p>
-		</div>
--->
-		<div>
-			Filter par libellé
-			<input type="text" ng-model="query" ng-click="count = count + 1" ></input>
-		</div>
-
-		<div>
-			<table class="table">
-				<thead>
-					<tr>
-						<th>Libelle</th>
-					</tr>
-				</thead>
-				<tr ng-repeat="todo in todos | filter:query" ng-click="" style="cursor:pointer" class="list-group">   
-					<td class="list-group-item ">{{todo.label}}</td>
-				</tr>
-			</table>    
-		</div>
-
+	<div>
+		Filter par libellé
+		<input type="text" ng-model="query" ng-click="count = count + 1" ></input>
 	</div>
+
+	<div>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Libelle</th>
+				</tr>
+			</thead>
+			<tr ng-repeat="todo in todos | filter:query" ng-click="" style="cursor:pointer" class="list-group">   
+				<td class="list-group-item ">{{todo.label}}</td>
+			</tr>
+		</table>    
+	</div>
+
+</div>
+
+-->
+<div class="container">
+	<section  id="todoapp">
+		<header id="header">
+			<h1>todos</h1>
+			<form id="todo-form" ng-submit="add()">
+				<input id="new-todo" placeholder="Nouvelles tâches?" ng-model="newTodo.title" ng-disabled="saving" autofocus>
+			</form>
+		</header>
+		<section id="main" ng-show="todos.length" ng-cloak>
+			<input id="toggle-all" type="checkbox" ng-model="allChecked" ng-click="markAll(allChecked)">
+			<label for="toggle-all">Mark all as complete</label>
+			<ul id="todo-list">
+				<li ng-repeat="todo in todos | filter:statusFilter track by $index" ng-class="{completed: todo.completed, editing: todo == editedTodo}">
+					<div class="view">
+						<input class="toggle" type="checkbox" ng-model="todo.completed" ng-change="toggleCompleted(todo)">
+						<label ng-dblclick="editTodo(todo)">{{todo.title}}</label>
+						<button class="destroy" ng-click="removeTodo(todo)"></button>
+					</div>
+					<form ng-submit="saveEdits(todo, 'submit')">
+						<input class="edit" ng-trim="false" ng-model="todo.title" todo-escape="revertEdits(todo)" ng-blur="saveEdits(todo, 'blur')" todo-focus="todo == editedTodo">
+					</form>
+				</li>
+			</ul>
+		</section>
+		<footer id="footer" ng-show="todos.length" ng-cloak>
+			<span id="todo-count"><strong>{{remainingCount}}</strong>
+				<ng-pluralize count="remainingCount" when="{ one: 'item left', other: 'items left' }"></ng-pluralize>
+			</span>
+			<ul id="filters">
+				<li>
+					<a ng-class="{selected: location.path() == '/'} " href="#/">Tous</a>
+				</li>
+				<li>
+					<a ng-class="{selected: location.path() == '/active'}" href="#/active">En cours</a>
+				</li>
+				<li>
+					<a ng-class="{selected: location.path() == '/completed'}" href="#/completed">Fini</a>
+				</li>
+			</ul>
+			<button id="clear-completed" ng-click="clearDoneTodos()" ng-show="remainingCount < todos.length">Clear completed</button>
+		</footer>
+	</section>
+</div>

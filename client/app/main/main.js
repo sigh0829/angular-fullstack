@@ -5,7 +5,6 @@ angular.module('flawwengApp')
     $routeProvider
       .when('/', {
         templateUrl: 'app/main/main.html',
-        controller: 'MainCtrl',
-        css : 'app/main/main.css'
+        controller: 'MainCtrl'
       });
   });
