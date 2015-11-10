@@ -31,7 +31,7 @@
     "tasks": [
         {
             "id": "03c9cc60-7e23-11e5-8de7-c7bc34823232",
-            "idColumn": "2bc257a0-7e23-11e5-bcc2-47f275fd9356",
+            "idColumn": "44522f20-7e23-11e5-92b7-d997deeab865",
             "name": "Développer en Angular",
             "description": "Approfondir ses connaissances sur la technologie.",
             "owner": "flawweng",
@@ -41,7 +41,7 @@
         },
         {
             "id": "151b1640-7e23-11e5-a785-034251641d74",
-            "idColumn": "de5cf510-7e22-11e5-8676-03c0de5bb1ff",
+            "idColumn": "44522f20-7e23-11e5-92b7-d997deeab865",
             "name": "Se sensibiliser aux technogies mobiles",
             "description": "Approfondir ses connaissances sur la technologie.",
             "owner": "flawweng",
@@ -51,11 +51,11 @@
         },
         {
             "id": "b28ec1f0-7eec-11e5-b565-77699f8e3000",
-            "idColumn": "44522f20-7e23-11e5-92b7-d997deeab865",
+            "idColumn": "39ee6cb1-7e23-11e5-8cb5-4bd43bebfae8",
             "name": "Bitch better have my money",
             "description": "Oh la la",
             "owner": "flawweng",
-            "endDate": "",
+            "endDate": null,
             "timeEstimate": "12",
             "timeSpent": "0"
         },
@@ -81,7 +81,7 @@
         },
         {
             "id": "064ec680-8179-11e5-9cbb-43f841a2479d",
-            "idColumn": "39ee6cb1-7e23-11e5-8cb5-4bd43bebfae8",
+            "idColumn": "44522f20-7e23-11e5-92b7-d997deeab865",
             "name": "Hysteria",
             "description": "Muse",
             "owner": "",
@@ -91,7 +91,7 @@
         },
         {
             "id": "a52d10b0-817c-11e5-9d5e-ff4240ba5e53",
-            "idColumn": "39ee6cb1-7e23-11e5-8cb5-4bd43bebfae8",
+            "idColumn": "44522f20-7e23-11e5-92b7-d997deeab865",
             "name": "ddd",
             "description": "dddd",
             "owner": "flawweng",

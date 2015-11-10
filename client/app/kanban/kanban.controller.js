@@ -1,4 +1,4 @@
-var kanban = angular.module('kanban', ['ui.bootstrap']);
+var kanban = angular.module('kanban', ['ui.bootstrap','ui.sortable']);
 
 Task  = function(){
 	this.id=-1;
@@ -29,30 +29,32 @@ kanban.controller('kanbanCtrl', function ($scope,$uibModal, kanbanService) {
 
 	}
 
-	$scope.onDrop = function (data, targetColId) {  
-		task = createTaskFromObject(data);
-		columns = $scope.currentKanban.columns;
-		for ( id in columns){
-			col = columns[id];
-			isTaskAlreadyExist = !(_.findWhere(col.tasks,{id:task.id})==undefined);
-			isSameColId = col.id==targetColId;
-			if(!isTaskAlreadyExist && isSameColId){
-				task.newColumn = targetColId;	
+	$scope.sortableOptions = {
+		placeholder: "task",
+		connectWith: ".column-container",
+		update : function(evt, ui){
+			columns = $scope.currentKanban.columns;
+			console.log(ui);
+			if(ui.item[0].id!=undefined && ui.sender!=undefined){
+				idTask = ui.item[0].id;
+				idTargetColumn=evt.target.id;
+				for ( id in columns){
+					task = _.findWhere(columns[id].tasks,{id:idTask});
+					if(task!=undefined){
+						break;
+					}
+				}
+				task.newColumn = idTargetColumn;
 				kanbanService.modifyTask($scope.currentKanban.id, task).then(function (data){
-					task.idColumn = targetColId;	
-					col.tasks.push(task);
+					task.idColumn = idTargetColumn;	
 				}, function (error){
 			// @TODO : Force to reload cause modify is displayed, work on scope bean.
 			alert('Une erreur est survenue lors de la création de la tâche.' + error);
 		});
-			} else if(isTaskAlreadyExist && !isSameColId){
-				_.remove(col.tasks, function(n){
-					return _.isEqual(n.id,task.id);
-				});
 			}
 		}
-		$scope.$apply();
-	}
+	};
+
 	$scope.add = function(kanbanSelected, col){
 		var modalInstance = $uibModal.open({
 			templateUrl : 'app/kanban/partial/modifyTask.html',
@@ -74,7 +76,7 @@ kanban.controller('kanbanCtrl', function ($scope,$uibModal, kanbanService) {
 			}, function (error){
 				alert('Une erreur est survenue lors de la création de la tâche.');
 			});
-			
+
 		}, function () {
 		});
 	}
