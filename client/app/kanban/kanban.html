@@ -1,60 +1,49 @@
- <div style="width:100%; margin: 0 auto 0 auto;">
-<!--
-    <div>
-        <select ng-model="selectedKanban" data-ng-options="k.name for k in kanbans"  ng-change="selectKanban(selectedKanban)"/>                 
-    </div>
-
-    <div class="col-lg-3 panel panel-primary colStyle connectedSortable" id="{{col.id}}" ng-repeat="col in currentKanban.columns" movetask style="height:100%">
-        <div class="panel-heading" style="margin-bottom: 10px;">
-            <h3 class="panel-title">{{col.name}}
-                <span class="glyphicon glyphicon-plus" style="color:green;font-size:25px;cursor:pointer" ng-click="add(selectedKanban,col)"></span>
-            </h3>
-        </div>
-
-        <div class="thumbnail"  ng-repeat="task in col.tasks" style="padding: 0px;" id="{{task.id}}">
-            <div class="caption" style="background-color:{{task.color}}">
-                <h5><b>{{task.name}}</b></h6>
-                 <p style="white-space:pre-wrap; font-size:12px">{{task.description}}</p>
-                 <p> 
-                    <span class="glyphicon glyphicon-pencil" style="cursor:pointer" ng-click="modify(task)"></span>
-                    <span class="glyphicon glyphicon-trash" style="cursor:pointer" ng-click="delete(selectedKanban, col,task)"></span>
-                </p>
-            </div>
-        </div>
-
-    </div>
--->
-<div>
-    <select ng-model="selectedKanban" data-ng-options="k.name for k in kanbans"  ng-change="selectKanban(selectedKanban)"/>                 
-</div>
-  <!--  <div style:"float:left">
-        <div   ng-repeat="col in currentKanban.columns" >
-           <div  class="column-container screen floatleft" ui-sortable="sortableOptions" id="{{col.id}}" style="height:100%" ng-model="col">
-              <div class="thumbnail" ng-repeat="task in col.tasks">{{task.name}}</div>
-          </div>
+   <div id="kanban">
+  <!--
+      <div>
+          <select ng-model="selectedKanban" data-ng-options="k.name for k in kanbans"  ng-change="selectKanban(selectedKanban)"/>                 
       </div>
-  </div> 
--->
 
-<div style:"float:left">
-    <div ng-repeat="column in currentKanban.columns"  class="col-lg-3 panel panel-primary colStyle connectedSortable" >
-      <div class="panel-heading" style="margin-bottom: 10px;">
-        <h3 class="panel-title">{{column.name}}
-        <span class="glyphicon glyphicon-plus" style="color:green;font-size:25px;cursor:pointer" ng-click="add(selectedKanban,column)"></span>
-        </h3>
-    </div>
+      <div class="col-lg-3 panel panel-primary colStyle connectedSortable" id="{{col.id}}" ng-repeat="col in currentKanban.columns" movetask style="height:100%">
+          <div class="panel-heading" style="margin-bottom: 10px;">
+              <h3 class="panel-title">{{col.name}}
+                  <span class="glyphicon glyphicon-plus" style="color:green;font-size:25px;cursor:pointer" ng-click="add(selectedKanban,col)"></span>
+              </h3>
+          </div>
 
-    
+          <div class="thumbnail"  ng-repeat="task in col.tasks" style="padding: 0px;" id="{{task.id}}">
+              <div class="caption" style="background-color:{{task.color}}">
+                  <h5><b>{{task.name}}</b></h6>
+                   <p style="white-space:pre-wrap; font-size:12px">{{task.description}}</p>
+                   <p> 
+                      <span class="glyphicon glyphicon-pencil" style="cursor:pointer" ng-click="modify(task)"></span>
+                      <span class="glyphicon glyphicon-trash" style="cursor:pointer" ng-click="delete(selectedKanban, col,task)"></span>
+                  </p>
+              </div>
+          </div>
 
-    <ul ui-sortable="sortableOptions" ng-model="column.tasks" id="{{column.id}}" class="column-container screen floatleft">
-        <li class="task" ng-repeat="task in column.tasks" id="{{task.id}}">
+      </div>
+  -->
+  <div>
+      <select ng-model="selectedKanban" data-ng-options="k.name for k in kanbans"  ng-change="selectKanban(selectedKanban)"/>                 
+  </div>
 
-           <span>{{task.name}}</span>
-       </li>
-   </ul>   
+  <div>
+      <div ng-repeat="column in currentKanban.columns"  class="col-sm-3 panel panel-primary colStyle connectedSortable" >
+        <div class="panel-heading" style="margin-bottom: 10px;">
+          <h3 class="panel-title">{{column.name}}
+          <span class="glyphicon glyphicon-plus" style="color:green;font-size:25px;cursor:pointer" ng-click="add(selectedKanban,column)"></span>
+          </h3>
+      </div>   
+
+      <ul ui-sortable="sortableOptions" ng-model="column.tasks" id="{{column.id}}" class="column-container">
+          <li class="task" ng-repeat="task in column.tasks" id="{{task.id}}">
+             <span>{{task.name}}</span>
+         </li>
+     </ul>   
 
 
-</div>
-</div>
+  </div>
+  </div>
 
-</div>
+  </div>

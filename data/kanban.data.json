@@ -31,7 +31,7 @@
     "tasks": [
         {
             "id": "03c9cc60-7e23-11e5-8de7-c7bc34823232",
-            "idColumn": "44522f20-7e23-11e5-92b7-d997deeab865",
+            "idColumn": "39ee6cb1-7e23-11e5-8cb5-4bd43bebfae8",
             "name": "Développer en Angular",
             "description": "Approfondir ses connaissances sur la technologie.",
             "owner": "flawweng",
@@ -51,7 +51,7 @@
         },
         {
             "id": "b28ec1f0-7eec-11e5-b565-77699f8e3000",
-            "idColumn": "39ee6cb1-7e23-11e5-8cb5-4bd43bebfae8",
+            "idColumn": "44522f20-7e23-11e5-92b7-d997deeab865",
             "name": "Bitch better have my money",
             "description": "Oh la la",
             "owner": "flawweng",
@@ -71,7 +71,7 @@
         },
         {
             "id": "3dc85f90-8165-11e5-aac6-cfa25d24af26",
-            "idColumn": "39ee6cb1-7e23-11e5-8cb5-4bd43bebfae8",
+            "idColumn": "2bc257a0-7e23-11e5-bcc2-47f275fd9356",
             "name": "ddd",
             "description": "dddd",
             "owner": "flawweng",
