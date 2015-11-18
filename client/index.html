@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
   <!-- bower:css -->
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+  <link rel="stylesheet" href="bower_components/fullcalendar/dist/fullcalendar.css" />
   <!-- endbower -->
   <!-- endbuild -->
   <!-- build:css({.tmp,client}) app/app.css -->
@@ -56,7 +57,7 @@
   </a>
 </li>
 <li class="has-subnav">
-<a href="#">
+<a href="/calendar">
     <i class="fa fa-calendar fa-2x"></i>
     <span class="nav-text">
      Calendrier
@@ -153,6 +154,9 @@
     <script src="bower_components/lodash/lodash.js"></script>
     <script src="bower_components/jquery-ui/jquery-ui.js"></script>
     <script src="bower_components/angular-ui-sortable/sortable.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/fullcalendar/dist/fullcalendar.js"></script>
+    <script src="bower_components/angular-ui-calendar/src/calendar.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
     
@@ -163,6 +167,7 @@
 
     <script src="app/app.js"></script>
     <!-- injector:js -->
+    <script src="app/calendar/calendar.controller.js"></script>
     <script src="app/kanban/kanban.controller.js"></script>
     <script src="app/kanban/kanban.directive.js"></script>
     <script src="app/kanban/kanban.service.js"></script>

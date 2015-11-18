@@ -31,3 +31,15 @@
     cursor: move;
     text-align: center;
 } 
+
+.colorBox {
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    border: 1px solid black;
+    margin: 2px;
+}
+
+.selected {
+    border: 2px solid red;
+}

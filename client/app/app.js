@@ -5,7 +5,7 @@ angular.module('flawwengApp', [
   'ngResource',
   'ngSanitize',
   'ngRoute',
-  'ui.bootstrap','todo','kanban'
+  'ui.bootstrap','todo','kanban','calendar'
   ])
 .config(function ($routeProvider, $locationProvider) {
   $routeProvider.when('/todo', {
@@ -16,6 +16,10 @@ angular.module('flawwengApp', [
     templateUrl: 'app/kanban/kanban.html',
     controller: 'kanbanCtrl',
     controllerAs: 'kanban'
+  }).when('/calendar', {
+    templateUrl: 'app/calendar/calendar.html',
+    controller: 'calendarCtrl',
+    controllerAs: 'calendar'
   }).when('/about', {
     templateUrl: 'app/about/about.html',
     css: 'app/about/about.css'

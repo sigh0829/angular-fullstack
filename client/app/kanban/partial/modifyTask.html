@@ -18,7 +18,7 @@
 				<div class="col-md-4">
 					<label for="owner">Propriétaire:</label>
 					<select ng-model='task.owner'>
-					<option ng-repeat="owner in owners" value='{{owner.name}}'>{{owner.name}}</option>
+						<option ng-repeat="owner in owners" value='{{owner.name}}'>{{owner.name}}</option>
 					</select>
 				</div>
 			</div>
@@ -44,10 +44,17 @@
 					<input type="text" ng-model='task.timeSpent'/>					
 				</div>
 			</div>
-		<div class="modal-footer">
-			<button type="submit" class="btn btn-default">OK</button>
-			<button class="btn btn-default" ng-click="cancel()">Annuler</button>
-		</div>
+			
+				<div class="pull-left ng-pristine ng-untouched ng-valid ng-scope" ng-repeat="color in colors" ng-model="color">
+					<label class="colorBox" for="newCardColorFFFFFF" ng-class="{selected: color == task.color}" style="background-color: #{{color}};" ng-click="task.color = color"></label>
+					<br ng-show="showRadios" class="ng-hide">
+					<input type="radio" id="newCardColorFFFFFF" name="newCardColor" value="FFFFFF" ng-show="showRadios" ng-model="model" class="ng-pristine ng-untouched ng-valid ng-hide">
+				</div>
+			
+			<div class="modal-footer">
+				<button type="submit" class="btn btn-default">OK</button>
+				<button class="btn btn-default" ng-click="cancel()">Annuler</button>
+			</div>
 
-	</form>
-</div>
+		</form>
+	</div>

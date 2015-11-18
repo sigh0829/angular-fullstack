@@ -80,7 +80,7 @@ kanban.controller('kanbanCtrl', function ($scope,$uibModal, kanbanService) {
 		}, function () {
 		});
 	}
-	$scope.modify = function(task){
+	$scope.modify = function(column,task){
 		task.endDate = task.endDate!=null?new Date(task.endDate):task.endDate;
 		var modalInstance = $uibModal.open({
 			templateUrl : 'app/kanban/partial/modifyTask.html',
@@ -97,8 +97,8 @@ kanban.controller('kanbanCtrl', function ($scope,$uibModal, kanbanService) {
 		});
 		modalInstance.result.then(function (modifiedTask) {
 			kanbanService.modifyTask($scope.currentKanban.id, modifiedTask).then(function (data){
-			//	index = _.findIndex(col.tasks, {'id' : data.id});
-				//col.tasks[index] = data;
+				index = _.findIndex(column.tasks, {'id' : data.id});
+				column.tasks[index] = data;
 			}, function (error){
 			// @TODO : Force to reload cause modify is displayed, work on scope bean.
 			alert('Une erreur est survenue lors de la création de la tâche.');
@@ -126,7 +126,10 @@ kanban.controller('kanbanCtrl', function ($scope,$uibModal, kanbanService) {
 		name:'flawweng'
 	}];
 
-	$scope.task = task;
+	$scope.task = {};
+	angular.copy(task,$scope.task);
+	//console.log($scope.task);
+	$scope.colors = ["FFFFFF", "DBDBDB", "FFB5B5", "FF9E9E", "FCC7FC", "FC9AFB", "CCD0FC", "989FFA", "CFFAFC", "9EFAFF", "94D6FF", "C1F7C2", "A2FCA3", "FAFCD2", "FAFFA1", "FCE4D4", "FCC19D"];
 
 	$scope.endDate = {
 		opened: false

@@ -23,27 +23,31 @@
           </div>
 
       </div>
-  -->
-  <div>
+    -->
+    <div>
       <select ng-model="selectedKanban" data-ng-options="k.name for k in kanbans"  ng-change="selectKanban(selectedKanban)"/>                 
-  </div>
+    </div>
 
-  <div>
+    <div>
       <div ng-repeat="column in currentKanban.columns"  class="col-sm-3 panel panel-primary colStyle connectedSortable" >
         <div class="panel-heading" style="margin-bottom: 10px;">
           <h3 class="panel-title">{{column.name}}
-          <span class="glyphicon glyphicon-plus" style="color:green;font-size:25px;cursor:pointer" ng-click="add(selectedKanban,column)"></span>
+            <span class="glyphicon glyphicon-plus" style="color:green;font-size:25px;cursor:pointer" ng-click="add(selectedKanban,column)"></span>
           </h3>
-      </div>   
+        </div>   
 
-      <ul ui-sortable="sortableOptions" ng-model="column.tasks" id="{{column.id}}" class="column-container">
-          <li class="task" ng-repeat="task in column.tasks" id="{{task.id}}">
-             <span>{{task.name}}</span>
-         </li>
-     </ul>   
+        <ul ui-sortable="sortableOptions" ng-model="column.tasks" id="{{column.id}}" class="column-container">
+          <li class="task" ng-repeat="task in column.tasks" id="{{task.id}}" style="background-color: #{{task.color}};" >
+           <span>{{task.name}}</span>
+           <p style="float:right"> 
+            <span class="glyphicon glyphicon-pencil" style="cursor:pointer" ng-click="modify(column,task)"></span>
+            <span class="glyphicon glyphicon-trash" style="cursor:pointer" ng-click="delete(selectedKanban, col,task)"></span>
+          </p>
+        </li>
+      </ul>   
 
 
+    </div>
   </div>
-  </div>
 
-  </div>
+</div>
