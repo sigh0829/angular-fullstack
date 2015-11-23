@@ -1,186 +1,29 @@
-<!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<html>
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <base href="/">
-  <title></title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width">
-  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-  <!-- build:css(client) app/vendor.css -->
-  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
-  <!-- bower:css -->
-  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
-  <link rel="stylesheet" href="bower_components/fullcalendar/dist/fullcalendar.css" />
-  <!-- endbower -->
-  <!-- endbuild -->
-  <!-- build:css({.tmp,client}) app/app.css -->
-  <!-- injector:css -->
-  <link rel="stylesheet" href="app/about/about.css">
-  <link rel="stylesheet" href="app/app.css">
-  <link rel="stylesheet" href="app/kanban/kanban.css">
-  <link rel="stylesheet" href="app/main/main.css">
-  <link rel="stylesheet" href="app/todo/todo.css">
-  <link rel="stylesheet" href="components/modal/modal.css">
-  <!-- endinjector -->
-  <!-- endbuild -->
+  <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
 </head>
-<body ng-app="flawwengApp">
-  <nav class="main-menu">
-  <ul>
-    <li>
-      <a href="#">
-        <i class="fa fa-home fa-2x"></i>
-        <span class="nav-text">
-          Dashboard
-        </span>
-      </a>
-    </li>
-    <li class="has-subnav">
-      <a href="/todo">
-       <i class="fa fa-tasks fa-2x"></i>
-       <span class="nav-text">
-        Todos
-      </span>
-    </a>
-  </li>
-  <li class="has-subnav">
-    <a href="/kanban">
-     <i class="fa fa-sticky-note fa-2x"></i>
-     <span class="nav-text">
-      Kanban
-    </span>
-  </a>
-</li>
-<li class="has-subnav">
-<a href="/calendar">
-    <i class="fa fa-calendar fa-2x"></i>
-    <span class="nav-text">
-     Calendrier
-   </span>
- </a>
-</li>
+<body>
+  <div id="my-signin2"></div>
+  <script>
+    function onSuccess(googleUser) {
+      console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+    }
+    function onFailure(error) {
+      console.log(error);
+    }
+    function renderButton() {
+      gapi.signin2.render('my-signin2', {
+        'scope': 'https://www.googleapis.com/auth/plus.login',
+        'width': 200,
+        'height': 50,
+        'longtitle': true,
+        'theme': 'dark',
+        'onsuccess': onSuccess,
+        'onfailure': onFailure
+      });
+    }
+  </script>
 
-<li class="has-subnav">
-  <a href="#">
-    <i class="fa fa-rss fa-2x"></i>
-    <span class="nav-text">
-     RSS
-   </span>
- </a>
-</li>
-<li class="has-subnav">
-  <a href="#">
-   <i class="fa fa-commenting fa-2x"></i>
-   <span class="nav-text">
-    Chat
-  </span>
-</a>
-</li>
-<li>
-  <a href="#">
-    <i class="fa fa-google fa-2x"></i>
-    <span class="nav-text">
-      Google
-    </span>
-  </a>
-</li>
-<li>
-  <a href="#">
-    <i class="fa fa-facebook fa-2x"></i>
-    <span class="nav-text">
-      Facebook
-    </span>
-  </a>
-</li>
-<li>
-  <a href="#">
-    <i class="fa fa-twitter fa-2x"></i>
-    <span class="nav-text">
-      Twitter
-    </span>
-  </a>
-</li>
-<li>
- <a href="#">
-   <i class="fa fa-table fa-2x"></i>
-   <span class="nav-text">
-    Wiki
-  </span>
-</a>
-</li>
-<li>
- <a href="#">
-  <i class="fa fa-map-marker fa-2x"></i>
-  <span class="nav-text">
-    Maps
-  </span>
-</a>
-</li>
-
-</ul>
-<ul class="logout">
-  <li>
-   <a href="#">
-     <i class="fa fa-power-off fa-2x"></i>
-     <span class="nav-text">
-      Logout
-    </span>
-  </a>
-</li>  
-</ul>
-</nav>
-  <div class="container" ng-view=""></div>
-
-<!-- Add your site or application content here -->
-
-    <!--[if lt IE 9]>
-    <script src="bower_components/es5-shim/es5-shim.js"></script>
-    <script src="bower_components/json3/lib/json3.min.js"></script>
-    <![endif]-->
-    <!-- build:js({client,node_modules}) app/vendor.js -->
-    <!-- bower:js -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-    <script src="bower_components/lodash/lodash.js"></script>
-    <script src="bower_components/jquery-ui/jquery-ui.js"></script>
-    <script src="bower_components/angular-ui-sortable/sortable.js"></script>
-    <script src="bower_components/moment/moment.js"></script>
-    <script src="bower_components/fullcalendar/dist/fullcalendar.js"></script>
-    <script src="bower_components/angular-ui-calendar/src/calendar.js"></script>
-    <!-- endbower -->
-    <!-- endbuild -->
-    
-    <!-- <script src="app/todo/todo.controller.js"></script> -->
-    
-
-    <!-- build:js({.tmp,client}) app/app.js -->
-
-    <script src="app/app.js"></script>
-    <!-- injector:js -->
-    <script src="app/calendar/calendar.controller.js"></script>
-    <script src="app/kanban/kanban.controller.js"></script>
-    <script src="app/kanban/kanban.directive.js"></script>
-    <script src="app/kanban/kanban.service.js"></script>
-    <script src="app/main/main.controller.js"></script>
-    <script src="app/main/main.js"></script>
-    <script src="app/todo/todo.controller.js"></script>
-    <script src="app/todo/todo.directive.js"></script>
-    <script src="app/todo/todo.module.js"></script>
-    <script src="app/todo/todo.service.js"></script>
-    <script src="components/modal/modal.service.js"></script>
-    <script src="components/navbar/navbar.controller.js"></script>
-    <!-- endinjector -->
-    <!-- endbuild -->
-
-  </body>
-  </html>
+  <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+</body>
+</html>
