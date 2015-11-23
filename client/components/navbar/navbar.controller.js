@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('flawwengApp')
-  .controller('NavbarCtrl', function ($scope, $location) {
+  .controller('navbarCtrl', function ($scope, $location) {
     $scope.menu = [{
       'title': 'Home',
       'link': '/'
