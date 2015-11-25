@@ -11,12 +11,12 @@ angular.module('flawwengApp').directive('googleSignin', ['$window', '$rootScope'
     var defaults = {
       onsuccess: onSignIn,
       cookiepolicy: 'single_host_origin',
-      onfailure: onSignInFailure,
       scope: 'https://mail.google.com/',
       longtitle: true,
       theme: 'dark',
-     // autorender: true,
-     width:200
+      autorender: true,
+     width:300,
+     height:50
    };
    angular.forEach(Object.getOwnPropertyNames(defaults), function (propName) {
     if (attrs.hasOwnProperty(propName)) {
@@ -26,38 +26,38 @@ angular.module('flawwengApp').directive('googleSignin', ['$window', '$rootScope'
 
    defaults.clientid = attrs.clientid;
    function onSignIn(authResult) {
-    $rootScope.currentUserSignedIn = true;
-    $rootScope.$broadcast('event:google-plus-signin-success', authResult);
-
-  } 
-  function onSignInFailure() {
-    console.log("Sign in failure");
-    $rootScope.$broadcast('event:google-plus-signin-failure', null);
-  };
-
-  var po = document.createElement('script');
-  po.type = 'text/javascript';
-  po.async = true;
-  po.src = 'https://apis.google.com/js/client:platform.js';
-  var s = document.getElementsByTagName('script')[0];
-  s.parentNode.insertBefore(po, s);
-  linker(function (el, tScope) {
-    po.onload = function () {
-      if (el.length) {
-        element.append(el);
-      }
-      gapi.load('auth2', function () {
-        var googleAuthObj =
-        gapi.auth2.init({
-          client_id: defaults.clientid,
-          cookie_policy: defaults.cookiepolicy
-        });
-        gapi.signin2.render(element[0], defaults);
-      });
+   // console.log(gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().id_token);
+   /* var currentUser = {
+      'name' : authResult.getBasicProfile().getName(),
+      'email' : authResult.getBasicProfile().getEmail()
     };
+    $rootScope.currentUser = currentUser;
+    $window.sessionStorage.currentUser=JSON.stringify(currentUser);
+    $rootScope.$broadcast('event:google-signin-success', authResult, currentUser);
+    */
+
+} 
+function onSignInFailure() {
+  console.log("Sign in failure");
+  $rootScope.$broadcast('event:google-plus-signin-failure', null);
+};
+
+linker(function (el, tScope) {
+  if (el.length) {
+    element.append(el);
+  }
+  gapi.load('auth2', function () {
+    var googleAuthObj =
+    gapi.auth2.init({
+      client_id: defaults.clientid,
+      cookie_policy: defaults.cookiepolicy
+    });
   });
+  gapi.signin2.render(element[0], defaults);
+
+});
 
 }
 }
-}])
-.run();
+}]);
+//.run();

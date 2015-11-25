@@ -10,6 +10,8 @@
   <title></title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width">
+  <script src="https://apis.google.com/js/client:platform.js"></script>
+  
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
   <!-- build:css(client) app/vendor.css -->
   <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
@@ -30,6 +32,32 @@
   <!-- endinjector -->
   <!-- endbuild -->
 </head>
+<script type="text/javascript">
+  var defaults = {
+    clientid :'190564632536-g0ksc1at7sh9aal7u4cgsfd2632uotic.apps.googleusercontent.com',
+    onsuccess: onSignIn,
+    cookiepolicy: 'single_host_origin',
+    scope: 'https://mail.google.com/',
+    longtitle: true,
+    theme: 'dark',
+     // autorender: true,
+     width:200
+   };
+   function onSignIn(authResult) {
+    console.log(gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().id_token);
+  } 
+  var googleAuthObj;
+  gapi.load('auth2', function () {
+    googleAuthObj = gapi.auth2.init({
+      client_id: defaults.clientid,
+      cookie_policy: defaults.cookiepolicy
+    });
+ //   console.log(googleAuthObj);
+  });
+  setInterval(function(){
+  //console.log(gapi.auth2.getAuthInstance().currentUser.get().isSignedIn());
+ },3000); 
+</script>
 <body ng-app="flawwengApp">
  <!--<nav class="main-menu">
     <ul>
@@ -137,10 +165,7 @@
 </nav>
 -->
 <navbar></navbar>
-<div id="sidebar-left" class="col-xs-2 col-sm-2">
-
-  
-</div>
+<div id="sidebar-left" class="col-xs-2 col-sm-2"></div>
 <div class="col-xs-12 col-sm-10" ng-view=""></div>
 
 <!-- Add your site or application content here -->

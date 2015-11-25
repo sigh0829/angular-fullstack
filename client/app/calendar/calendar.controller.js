@@ -6,50 +6,44 @@ calendar.controller('calendarCtrl', function($scope,$uibModal){
 	var d = date.getDate();
 	var m = date.getMonth();
 	var y = date.getFullYear();
+    CalendarEvent  = function(title, start, end){
+      this.id=-1;
+      this.title=title;
+      this.start=start,
+      this.end=end,
+      this.toString =  function(){
+         return this.id + ' - ' + this.title + ' - '+ this.startDate + ' - '+ this.endDate;
+     } 
+ }
 
-	CalendarEvent  = function(title, start, end){
-		this.id=-1;
-		this.title=title;
-		this.start=start,
-		this.end=end,
-		this.toString =  function(){
-			return this.id + ' - ' + this.title + ' - '+ this.startDate + ' - '+ this.endDate;
-		} 
-	}
+ /* event source that pulls from google.com */
+ $scope.eventSource = {
+  url: "http://www.google.com/calendar/feeds/usa__en%40holiday.calendar.google.com/public/basic",
+            className: 'gcal-event',          // an option!
+              currentTimezone: 'America/Chicago' // an option!
+          };
+          /* event source that contains custom events on the scope */
+          $scope.events = [
+          new CalendarEvent("Today is gonna the day", new Date(y,m,d),new Date(y,m,d+1))
+          ];
 
-	/* event source that pulls from google.com */
-	$scope.eventSource = {
-		url: "https://calendar.google.com/calendar/feeds/fr.french%23holiday%40group.v.calendar.google.com/public/basic?key=AIzaSyDKO_AeL_SKDzwdM_S9wqOqojBd4A3a3KE",
-            className: 'gcal-event'          // an option!
-        };
-        /* event source that contains custom events on the scope */
-        $scope.events = [
-        new CalendarEvent("Today is gonna the day", new Date(y,m,d),new Date(y,m,d+1))
-        //{title: 'All Day Event',start: new Date(y, m, 1)},
-        //{title: 'Long Event',start: new Date(y, m, d - 5),end: new Date(y, m, d - 2)},
-        //{id: 999,title: 'Repeating Event',start: new Date(y, m, d - 3, 16, 0),allDay: false},
-        //{id: 999,title: 'Repeating Event',start: new Date(y, m, d + 4, 16, 0),allDay: false},
-        //{title: 'Birthday Party',start: new Date(y, m, d + 1, 19, 0),end: new Date(y, m, d + 1, 22, 30),allDay: false},
-        //{title: 'Click for Google',start: new Date(y, m, 28),end: new Date(y, m, 29),url: 'http://google.com/'}
-        ];
+          /* alert on eventClick */
+          $scope.alertOnEventClick = function( date, jsEvent, view){
+           alert(date.title + ' was clicked ');
+       };
+       /* alert on Drop */
+       $scope.alertOnDrop = function(event, delta, revertFunc, jsEvent, ui, view){
+           alert('Event Droped to make dayDelta ' + delta);
+       };
+       /* alert on Resize */
+       $scope.alertOnResize = function(event, delta, revertFunc, jsEvent, ui, view ){
+           alert('Event Resized to make dayDelta ' + delta);
+       };
 
-        /* alert on eventClick */
-        $scope.alertOnEventClick = function( date, jsEvent, view){
-        	alert(date.title + ' was clicked ');
-        };
-        /* alert on Drop */
-        $scope.alertOnDrop = function(event, delta, revertFunc, jsEvent, ui, view){
-        	alert('Event Droped to make dayDelta ' + delta);
-        };
-        /* alert on Resize */
-        $scope.alertOnResize = function(event, delta, revertFunc, jsEvent, ui, view ){
-        	alert('Event Resized to make dayDelta ' + delta);
-        };
-        
-        /* Render Tooltip */
-        $scope.eventRender = function( event, element, view ) { 
-        	element.attr({'tooltip': event.title,
-        		'tooltip-append-to-body': true});
+       /* Render Tooltip */
+       $scope.eventRender = function( event, element, view ) { 
+           element.attr({'tooltip': event.title,
+              'tooltip-append-to-body': true});
         //$compile(element)($scope);
     };
 
