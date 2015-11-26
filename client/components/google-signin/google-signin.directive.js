@@ -11,7 +11,7 @@ angular.module('flawwengApp').directive('googleSignin', ['$window', '$rootScope'
     var defaults = {
       onsuccess: onSignIn,
       cookiepolicy: 'single_host_origin',
-      scope: 'https://mail.google.com/',
+      scope: 'https://mail.google.com/ https://www.googleapis.com/auth/calendar',
       longtitle: true,
       theme: 'dark',
       autorender: true,
