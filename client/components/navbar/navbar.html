@@ -1,24 +1,4 @@
-<!--<div class="navbar navbar-default navbar-static-top" ng-controller="NavbarCtrl">
-  <div class="container">
-    <div class="navbar-header">
-      <button class="navbar-toggle" type="button" ng-click="isCollapsed = !isCollapsed">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a href="/" class="navbar-brand">FlawwengApp</a>
-    </div>
-    <div collapse="isCollapsed" class="navbar-collapse collapse" id="navbar-main">
-      <ul class="nav navbar-nav">
-        <li ng-repeat="item in menu" ng-class="{active: isActive(item.link)}">
-            <a ng-href="{{item.link}}">{{item.title}}</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
--->
+
 
 <header class="navbar">
   <div class="container-fluid expanded-panel">
@@ -58,26 +38,13 @@
                   <span class="badge">7</span>
                 </a>
               </li>
-              <li class="hidden-xs">
-                <a href="http://devoops.me/themes/devoops/index.html" class="modal-link">
-                  <i class="fa fa-bell"></i>
-                  <span class="badge">7</span>
-                </a>
-              </li>
-              <li class="hidden-xs">
-                <a href="http://devoops.me/themes/devoops/ajax/page_messages.html" class="ajax-link">
-                  <i class="fa fa-envelope"></i>
-                  <span class="badge">7</span>
-                </a>
-              </li>
 
               <li  dropdown>
-               <!--  <i class="fa fa-angle-down pull-right"></i> -->
                <a href="#" class="account">
                 <div class="user-mini pull-right">
                   <span class="welcome">Bienvenue,</span>
                   <i class="fa fa-angle-down pull-right"></i>      
-                  <span>LOL</span>
+                  <span>{{currentUser.name}}</span>
                 </div>
               </a>
               <ul class="dropdown-menu">
@@ -118,6 +85,7 @@
                   </a>
                 </li>
               </ul>
+              
             </li>
 
           </ul>

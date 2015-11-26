@@ -44,13 +44,15 @@ angular.module('flawwengApp', [
     console.log('sign out')
   });
 */
+
 googleAuthObj.isSignedIn.listen(function(val){
-  console.log(val);
     isSignin = val;    
   if(!val){
     $rootScope.$apply(function(){
       $location.path("/login");
     });
+     $rootScope.$broadcast('event:google-logout');
+    
   } else {
     $rootScope.$apply(function(){
       $location.path("/");

@@ -14,9 +14,9 @@
   
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
   <!-- build:css(client) app/vendor.css -->
+   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
   <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
   <!-- bower:css -->
-  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
   <link rel="stylesheet" href="bower_components/fullcalendar/dist/fullcalendar.css" />
   <!-- endbower -->
   <!-- endbuild -->
@@ -59,115 +59,11 @@
  },3000); 
 </script>
 <body ng-app="flawwengApp">
- <!--<nav class="main-menu">
-    <ul>
-      <li>
-        <a href="#">
-          <i class="fa fa-home fa-2x"></i>
-          <span class="nav-text">
-            Dashboard
-          </span>
-        </a>
-      </li>
-      <li class="has-subnav">
-        <a href="/todo">
-         <i class="fa fa-tasks fa-2x"></i>
-         <span class="nav-text">
-          Todos
-        </span>
-      </a>
-    </li>
-    <li class="has-subnav">
-      <a href="/kanban">
-       <i class="fa fa-sticky-note fa-2x"></i>
-       <span class="nav-text">
-        Kanban
-      </span>
-    </a>
-  </li>
-  <li class="has-subnav">
-    <a href="/calendar">
-      <i class="fa fa-calendar fa-2x"></i>
-      <span class="nav-text">
-       Calendrier
-     </span>
-   </a>
- </li>
 
- <li class="has-subnav">
-  <a href="#">
-    <i class="fa fa-rss fa-2x"></i>
-    <span class="nav-text">
-     RSS
-   </span>
- </a>
-</li>
-<li class="has-subnav">
-  <a href="#">
-   <i class="fa fa-commenting fa-2x"></i>
-   <span class="nav-text">
-    Chat
-  </span>
-</a>
-</li>
-<li>
-  <a href="#">
-    <i class="fa fa-google fa-2x"></i>
-    <span class="nav-text">
-      Google
-    </span>
-  </a>
-</li>
-<li>
-  <a href="#">
-    <i class="fa fa-facebook fa-2x"></i>
-    <span class="nav-text">
-      Facebook
-    </span>
-  </a>
-</li>
-<li>
-  <a href="#">
-    <i class="fa fa-twitter fa-2x"></i>
-    <span class="nav-text">
-      Twitter
-    </span>
-  </a>
-</li>
-<li>
- <a href="#">
-   <i class="fa fa-table fa-2x"></i>
-   <span class="nav-text">
-    Wiki
-  </span>
-</a>
-</li>
-<li>
- <a href="#">
-  <i class="fa fa-map-marker fa-2x"></i>
-  <span class="nav-text">
-    Maps
-  </span>
-</a>
-</li>
-
-</ul>
-<ul class="logout">
-  <li>
-   <a href="#">
-     <i class="fa fa-power-off fa-2x"></i>
-     <span class="nav-text">
-      Logout
-    </span>
-  </a>
-</li>  
-</ul>
-</nav>
--->
 <navbar></navbar>
+
 <div id="sidebar-left" class="col-xs-2 col-sm-2"></div>
 <div class="col-xs-12 col-sm-10" ng-view=""></div>
-
 <!-- Add your site or application content here -->
 
     <!--[if lt IE 9]>
@@ -178,6 +74,7 @@
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/json3/lib/json3.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>

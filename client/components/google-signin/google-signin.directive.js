@@ -26,15 +26,16 @@ angular.module('flawwengApp').directive('googleSignin', ['$window', '$rootScope'
 
    defaults.clientid = attrs.clientid;
    function onSignIn(authResult) {
-   // console.log(gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().id_token);
-   /* var currentUser = {
+    console.log(authResult);
+
+    var currentUser = {
       'name' : authResult.getBasicProfile().getName(),
       'email' : authResult.getBasicProfile().getEmail()
     };
     $rootScope.currentUser = currentUser;
     $window.sessionStorage.currentUser=JSON.stringify(currentUser);
     $rootScope.$broadcast('event:google-signin-success', authResult, currentUser);
-    */
+    
 
 } 
 function onSignInFailure() {
