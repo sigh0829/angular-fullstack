@@ -1,0 +1,17 @@
+
+ <table class="table">
+ 	  <thead>
+      <tr>
+        <th>De</th>
+        <th>Sujet</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+    	<tr ng-repeat="mail in mails">
+        	<td>{{mail.from}}</td>	
+    		<td>{{mail.snippet!=''?mail.snippet:'(aucun objet)'}}</td>	
+    		<td>{{mail.date}}</td>
+    	</tr>
+    </tbody>
+ </table>

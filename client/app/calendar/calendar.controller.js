@@ -1,7 +1,8 @@
 var calendar = angular.module('calendar', ['ui.bootstrap','ui.calendar']);
 
 
-calendar.controller('calendarCtrl', function($scope,$uibModal){
+calendar.controller('calendarCtrl', function($rootScope,$scope,$uibModal){
+  $rootScope.$broadcast('event:sidebarletf-update', []);
 	var date = new Date();
 	var d = date.getDate();
 	var m = date.getMonth();
@@ -15,43 +16,7 @@ calendar.controller('calendarCtrl', function($scope,$uibModal){
      return this.id + ' - ' + this.title + ' - '+ this.startDate + ' - '+ this.endDate;
    } 
  }
- $scope.googleEvents = [];
-/*
- gapi.client.load('calendar', 'v3').then(function(){
-   request = gapi.client.calendar.calendarList.list({}).execute(function(resp) {
-    var calendars = resp.items;
-    for (i = 0; i < calendars.length; i++) {
-          var calendar = calendars[i];
-      gapi.client.calendar.events.list({
-        'calendarId': calendar.id,
-        'showDeleted': false,
-        'singleEvents': true,
-        'maxResults': 50,
-        'timeMin' : new Date('2015-11-01').toISOString(),
-        'timeMax' : new Date('2015-11-31').toISOString(),
-        'orderBy': 'startTime'
-      }).execute(function(resp){
-       var events = resp.items;
-       console.log(events);
-       for (i = 0; i < events.length; i++) {
-        currentEvent = events[i];
-        startDate = currentEvent.start.date!=undefined?currentEvent.start.date : currentEvent.start.dateTime;
-        endDate = currentEvent.end.date!=undefined?currentEvent.end.date:currentEvent.end.dateTime;
-        $scope.googleEvents.push(new CalendarEvent(
-          events[i].summary,moment(startDate),moment(endDate)
-          ));
-      }
-      $scope.$apply();
-    });
-    }
-  })
-
- });
-*/
-
-//loadEvents($scope, new Date(y,m,1),new Date(y,m,31));
-
-/* event source that contains custom events on the scope */
+$scope.googleEvents = [];
 $scope.events = [
 new CalendarEvent("Today is gonna the day", new Date(2015,m,d),new Date(y,m,d+1))
 ];
@@ -75,7 +40,7 @@ $scope.renderView = function(view){
 
 /* Render Tooltip */
 $scope.eventRender = function( event, element, view ) { 
- element.attr({'tooltip': event.title,
+ element.attr({'tooltip': event.title, 
   'tooltip-append-to-body': true});
 };
 

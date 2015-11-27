@@ -6,7 +6,7 @@ angular.module('flawwengApp', [
   'ngResource',
   'ngSanitize',
   'ngRoute',
-  'ui.bootstrap','todo','kanban','calendar'
+  'ui.bootstrap','todo','kanban','calendar','mail'
   ])
 .config(function ($routeProvider, $locationProvider) {
   $routeProvider.when('/login', {
@@ -28,6 +28,10 @@ angular.module('flawwengApp', [
   }).when('/about', {
     templateUrl: 'app/about/about.html',
     css: 'app/about/about.css'
+  }).when('/mail', {
+    templateUrl: 'app/mail/mail.html',
+    controller: 'mailCtrl',
+    controllerAs: 'mail'
   }).otherwise({
     redirectTo: '/'
   });

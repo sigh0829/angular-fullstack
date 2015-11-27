@@ -26,8 +26,6 @@ angular.module('flawwengApp').directive('googleSignin', ['$window', '$rootScope'
 
    defaults.clientid = attrs.clientid;
    function onSignIn(authResult) {
-    console.log(authResult);
-
     var currentUser = {
       'name' : authResult.getBasicProfile().getName(),
       'email' : authResult.getBasicProfile().getEmail()
