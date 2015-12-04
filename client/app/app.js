@@ -6,7 +6,7 @@ angular.module('flawwengApp', [
   'ngResource',
   'ngSanitize',
   'ngRoute',
-  'ui.bootstrap','todo','kanban','calendar','mail'
+  'ui.bootstrap','todo','kanban','calendar','mail','socket','ui-notification'
   ])
 .config(function ($routeProvider, $locationProvider) {
   $routeProvider.when('/login', {
@@ -50,12 +50,12 @@ angular.module('flawwengApp', [
 */
 
 googleAuthObj.isSignedIn.listen(function(val){
-    isSignin = val;    
+  isSignin = val;    
   if(!val){
     $rootScope.$apply(function(){
       $location.path("/login");
     });
-     $rootScope.$broadcast('event:google-logout');
+    $rootScope.$broadcast('event:google-logout');
     
   } else {
     $rootScope.$apply(function(){
@@ -86,12 +86,3 @@ $rootScope.$on('$routeChangeSuccess', function (event, next, current) {
 ]);
 
 
-/*
-$(document).ready(function () {
-  $('.show-sidebar').on('click', function (e) {
-    e.preventDefault();
-    $('div#main').toggleClass('sidebar-show');
-    //setTimeout(MessagesMenuWidth, 250);
-  });
-});
-*/

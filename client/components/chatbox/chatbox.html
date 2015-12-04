@@ -1,0 +1,17 @@
+ <div class="chatBoxContainer">
+  <div class="chatBox" id="id_3" style="right: 0px;" ng-repeat="currentChat in currentChats">
+    <span class="expand"><span class="close">▼</span><span class="open">▲</span></span>
+    <span class="closeBox">x</span>
+    <span class="userName">{{currentChat.name}}</span>
+    <div class="slider">
+      <div class="logMsg">
+        <div class="msgTxt">
+        </div>
+      </div>
+      <form method="post" name="">
+        <textarea name="msg" rows="3" ng-bind="message"></textarea>
+        <input ng-click="send(currentChat)">Ok</form>
+      </form>
+    </div>
+  </div>
+</div>

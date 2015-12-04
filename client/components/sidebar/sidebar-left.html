@@ -1,11 +1,25 @@
 <div id="sidebar-left" class="col-xs-2 col-sm-2">
 	<ul class="nav main-menu">
-	<li ng-repeat="currentMenu in menu">
-	<a href="{{currentMenu.link}}" class="active ajax-link">
-		<i class="{{currentMenu.icone}}"></i>
-		<span class="hidden-xs">{{currentMenu.name}}</span>
-	</a>
-	</li>
+		<li ng-repeat="currentMenu in menu">
+			<a href="{{currentMenu.link}}" class="active ajax-link">
+				<i class="{{currentMenu.icone}}"></i>
+				<span class="hidden-xs">{{currentMenu.name}}</span>
+			</a>
+		</li>
 	</ul>
-	
-</div>
+
+	<div id="contactBox">
+		<div id="membersContent">                
+			<!-- <span id="expand"><span class="close">X</span><span class="open">▲</span></span> -->
+			<h4><span id="count">{{contacts.length}}</span> online</h4>
+			<div class="scroll" style="max-height: 879px;">
+				<div id="members-list">
+					<div ng-repeat="contact in contacts" ng-click="talkTo(contact)">
+							<div>{{contact.name}}
+							<div class="circle"/>
+							</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>

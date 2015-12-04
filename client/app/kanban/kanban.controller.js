@@ -14,7 +14,8 @@ Task  = function(){
 	} 
 }
 
-kanban.controller('kanbanCtrl', function ($scope,$uibModal, kanbanService) {
+kanban.controller('kanbanCtrl', function ($rootScope,$scope,$uibModal, kanbanService) {
+	$rootScope.$broadcast('event:sidebarleft-update', []);
 	$scope.selectedKanban=null;;
 	$scope.kanbans =[];
 	$scope.currentKanban = null;

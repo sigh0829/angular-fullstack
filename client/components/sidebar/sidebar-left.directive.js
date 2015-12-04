@@ -8,4 +8,15 @@ angular.module('flawwengApp')
 		controller: 'sidebarLeftCtrl'
 	};
 
+})
+.directive('showSideBar', function(){
+	return{
+		restrict: 'A',
+		link: function (scope, element, attrs){
+			element.bind('click', function(event){
+				event.preventDefault();
+				angular.element('div#main').toggleClass('sidebar-hide');
+			});
+		}
+	}
 });

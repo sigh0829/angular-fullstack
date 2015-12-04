@@ -1,5 +1,6 @@
 var todo = angular.module('todo', ['ui.bootstrap']);
-todo.controller('todoCtrl', function ($scope,$uibModal,todoService) {
+todo.controller('todoCtrl', function ($rootScope, $scope,$uibModal,todoService) {
+	$rootScope.$broadcast('event:sidebarleft-update', []);
 	$scope.todos =[];
 	$scope.newTodo={};
 	$scope.editedTodo = null;
@@ -7,7 +8,7 @@ todo.controller('todoCtrl', function ($scope,$uibModal,todoService) {
 		if($scope.newTodo.title!=""){
 			todoService.saveTodo($scope.newTodo).then(function(todo){
 				$scope.todos.push(todo);
-				$scope.newTodo=new Todo();
+				$scope.newTodo={};
 			}, function (error){
 				alert(error)
 			});

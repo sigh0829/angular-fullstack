@@ -14,7 +14,7 @@
   
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
   <!-- build:css(client) app/vendor.css -->
-   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
   <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
   <!-- bower:css -->
   <link rel="stylesheet" href="bower_components/fullcalendar/dist/fullcalendar.css" />
@@ -29,10 +29,52 @@
   <link rel="stylesheet" href="app/todo/todo.css">
   <link rel="stylesheet" href="components/modal/modal.css">
   <link rel="stylesheet" href="components/navbar/navbar.css">
+  <link rel="stylesheet" href="components/notification/notification.css">
   <link rel="stylesheet" href="components/sidebar/sidebar-left.css">
   <!-- endinjector -->
   <!-- endbuild -->
 </head>
+
+<style>
+  .chatBoxContainer {
+    float: right;
+    position: relative;
+    right:0px;
+  }
+
+  .chatBox {
+    width: 200px;
+    padding: 2px 4px;
+    background: #eee;
+    position: relative;
+    bottom: -2px;
+    border: #ccc 1px solid;
+    box-shadow: 0px -1px 3px #ccc;
+    right:0px;
+       float: left;
+  }
+
+   .circle_green
+    {
+        border: 2px solid #a1a1a1;
+        padding: 10px 11px;
+        background: green;
+        width: 2px;
+        border-radius: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        width: 1%;
+    }
+
+    #circle {
+    width: 50px;
+    height: 50px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border-radius: 25px; 
+}
+
+</style>
 <script type="text/javascript">
   var defaults = {
     clientid :'190564632536-g0ksc1at7sh9aal7u4cgsfd2632uotic.apps.googleusercontent.com',
@@ -54,20 +96,29 @@
       cookie_policy: defaults.cookiepolicy
     });
  //   console.log(googleAuthObj);
-  });
+});
   setInterval(function(){
   //console.log(gapi.auth2.getAuthInstance().currentUser.get().isSignedIn());
- },3000); 
+},3000); 
 </script>
 <body ng-app="flawwengApp">
 
-<navbar></navbar>
-<div class="row">
-<sidebarleft></sidebarleft>
-<div id="content" class="col-xs-12 col-sm-10" ng-view=""></div>
+  <navbar></navbar>
+  <div id="main" class="container-fluid">
+    <div class="row">
+     <sidebarleft></sidebarleft>
+     <div id="content" class="col-xs-12 col-sm-10" ng-view=""></div> 
+   </div>
+ </div>
+ <chatBox></chatBox>
+ 
 </div>
-<!-- Add your site or application content here -->
 
+
+
+
+<!-- Add your site or application content here -->
+<script src="/socket.io/socket.io.js"></script>
     <!--[if lt IE 9]>
     <script src="bower_components/es5-shim/es5-shim.js"></script>
     <script src="bower_components/json3/lib/json3.min.js"></script>
@@ -76,13 +127,12 @@
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/json3/lib/json3.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-    <script src="bower_components/lodash/lodash.js"></script>
+    <script src="bower_components/lodash/dist/lodash.compat.js"></script>
     <script src="bower_components/jquery-ui/jquery-ui.js"></script>
     <script src="bower_components/angular-ui-sortable/sortable.js"></script>
     <script src="bower_components/moment/moment.js"></script>
@@ -105,18 +155,21 @@
     <script src="app/mail/mail.controller.js"></script>
     <script src="app/main/main.controller.js"></script>
     <script src="app/main/main.js"></script>
+    <script src="app/socket/socket.service.js"></script>
     <script src="app/todo/todo.controller.js"></script>
     <script src="app/todo/todo.directive.js"></script>
     <script src="app/todo/todo.module.js"></script>
     <script src="app/todo/todo.service.js"></script>
+    <script src="components/chatbox/chatbox.controller.js"></script>
+    <script src="components/chatbox/chatbox.directive.js"></script>
     <script src="components/google-signin/google-signin.directive.js"></script>
     <script src="components/modal/modal.service.js"></script>
     <script src="components/navbar/navbar.controller.js"></script>
     <script src="components/navbar/navbar.directive.js"></script>
+    <script src="components/notification/notification.js"></script>
     <script src="components/sidebar/sidebar-left.controller.js"></script>
     <script src="components/sidebar/sidebar-left.directive.js"></script>
     <!-- endinjector -->
     <!-- endbuild -->
-
   </body>
   </html>

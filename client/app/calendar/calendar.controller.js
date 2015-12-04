@@ -2,39 +2,38 @@ var calendar = angular.module('calendar', ['ui.bootstrap','ui.calendar']);
 
 
 calendar.controller('calendarCtrl', function($rootScope,$scope,$uibModal){
-  $rootScope.$broadcast('event:sidebarletf-update', []);
-	var date = new Date();
-	var d = date.getDate();
-	var m = date.getMonth();
-	var y = date.getFullYear();
+  $rootScope.$broadcast('event:sidebarleft-update', []);
+  var date = new Date();
+  var d = date.getDate();
+  var m = date.getMonth();
+  var y = date.getFullYear();
   CalendarEvent  = function(title, start, end){
-       this.id=-1;
-    this.title=title;
-        this.start=start,
-    this.end=end,
-    this.toString =  function(){
+   this.id=-1;
+   this.title=title;
+   this.start=start,
+   this.end=end,
+   this.toString =  function(){
      return this.id + ' - ' + this.title + ' - '+ this.startDate + ' - '+ this.endDate;
    } 
  }
-$scope.googleEvents = [];
-$scope.events = [
-new CalendarEvent("Today is gonna the day", new Date(2015,m,d),new Date(y,m,d+1))
-];
+ $scope.googleEvents = [];
+ $scope.events = [
+ new CalendarEvent("Today is gonna the day", new Date(2015,m,d),new Date(y,m,d+1))
+ ];
 
-/* alert on eventClick */
-$scope.alertOnEventClick = function( date, jsEvent, view){
- alert(date.title + ' was clicked ');
-};
-/* alert on Drop */
-$scope.alertOnDrop = function(event, delta, revertFunc, jsEvent, ui, view){
- alert('Event Droped to make dayDelta ' + delta);
-};
-/* alert on Resize */
-$scope.alertOnResize = function(event, delta, revertFunc, jsEvent, ui, view ){
- alert('Event Resized to make dayDelta ' + delta);
-};
-$scope.renderView = function(view){    
-  console.log(view);
+ /* alert on eventClick */
+ $scope.alertOnEventClick = function( date, jsEvent, view){
+   alert(date.title + ' was clicked ');
+ };
+ /* alert on Drop */
+ $scope.alertOnDrop = function(event, delta, revertFunc, jsEvent, ui, view){
+   alert('Event Droped to make dayDelta ' + delta);
+ };
+ /* alert on Resize */
+ $scope.alertOnResize = function(event, delta, revertFunc, jsEvent, ui, view ){
+   alert('Event Resized to make dayDelta ' + delta);
+ };
+ $scope.renderView = function(view){    
   loadEvents($scope, view.start.toDate(),view.end.toDate());
 }
 
@@ -121,11 +120,11 @@ $scope.cancel = function(){
 
 loadEvents = function($scope, startDate, endDate){
   $scope.googleEvents.length=[];
-   gapi.client.load('calendar', 'v3').then(function(){
+  gapi.client.load('calendar', 'v3').then(function(){
    request = gapi.client.calendar.calendarList.list({}).execute(function(resp) {
     var calendars = resp.items;
     for (i = 0; i < calendars.length; i++) {
-          var calendar = calendars[i];
+      var calendar = calendars[i];
       gapi.client.calendar.events.list({
         'calendarId': calendar.id,
         'showDeleted': false,
